@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>하나름 · 환상의 시뮬라크르</title>
+  <meta name="description" content="동방 프로젝트 2차 창작 글을 쓰는 하나름의 개인 페이지. 팬픽, 회지, 동방염염담 개발일지.">
+  <meta property="og:title" content="하나름 · 환상의 시뮬라크르">
+  <meta property="og:description" content="동방 프로젝트 2차 창작 글을 쓰는 하나름의 개인 페이지.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f6f1e7;
+      --card: #fffdf8;
+      --ink: #2a2622;
+      --muted: #7a7065;
+      --line: #e3d9c8;
+      --accent: #b3322c;      /* 신사 붉은색 */
+      --accent-soft: #f3dfd9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #17151a;
+        --card: #211e25;
+        --ink: #ece6dc;
+        --muted: #a39a8e;
+        --line: #36313b;
+        --accent: #e0645b;
+        --accent-soft: #3a2224;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans KR", system-ui, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+    /* 헤더 */
+    header { padding: 72px 0 40px; }
+    .eyebrow {
+      font-size: 13px; letter-spacing: .18em; color: var(--accent);
+      font-weight: 700; margin: 0 0 14px;
+    }
+    h1 {
+      font-family: "Gowun Batang", serif;
+      font-size: clamp(36px, 7vw, 54px);
+      line-height: 1.2; margin: 0 0 12px; font-weight: 700;
+    }
+    .lede { color: var(--muted); font-size: 17px; margin: 0; max-width: 34em; }
+    nav { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+    nav a {
+      text-decoration: none; font-size: 14px; font-weight: 500;
+      padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--card); transition: border-color .15s, color .15s;
+    }
+    nav a:hover { border-color: var(--accent); color: var(--accent); }
+    nav a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    nav a.primary:hover { color: #fff; opacity: .9; }
+
+    section { padding: 36px 0; border-top: 1px solid var(--line); }
+    h2 {
+      font-family: "Gowun Batang", serif; font-size: 24px; margin: 0 0 20px;
+      display: flex; align-items: baseline; gap: 10px;
+    }
+    h2 small { font-family: "Noto Sans KR", sans-serif; font-size: 13px; color: var(--muted); font-weight: 400; }
+
+    /* 정보란 */
+    .about p { margin: 0 0 14px; }
+    .facts {
+      display: grid; grid-template-columns: 7em 1fr; gap: 10px 16px;
+      margin: 22px 0 0; padding: 20px 22px; background: var(--card);
+      border: 1px solid var(--line); border-radius: 14px; font-size: 15px;
+    }
+    .facts dt { color: var(--muted); }
+    .facts dd { margin: 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 13px; padding: 2px 10px; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent);
+    }
+
+    /* 작품 */
+    .works { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .work {
+      display: block; text-decoration: none; padding: 18px 20px;
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      transition: border-color .15s, transform .15s;
+    }
+    .work:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .work .kind { font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: .05em; }
+    .work .name { font-family: "Gowun Batang", serif; font-size: 18px; font-weight: 700; margin: 4px 0 6px; line-height: 1.4; }
+    .work .note { font-size: 14px; color: var(--muted); margin: 0; }
+
+    /* 최근 글 */
+    .posts { list-style: none; margin: 0; padding: 0; }
+    .post a {
+      display: block; text-decoration: none; padding: 16px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+    .post:last-child a { border-bottom: 0; }
+    .post a:hover .post-title { color: var(--accent); }
+    .post-meta { font-size: 13px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+    .post-title { font-weight: 700; font-size: 17px; margin: 2px 0 4px; transition: color .15s; }
+    .post-summary { font-size: 14px; color: var(--muted); margin: 0; }
+    .status { color: var(--muted); font-size: 14px; }
+    .more { display: inline-block; margin-top: 14px; font-size: 14px; color: var(--accent); font-weight: 500; }
+
+    footer { padding: 40px 0 60px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+
+    @media (max-width: 520px) {
+      header { padding-top: 48px; }
+      .facts { grid-template-columns: 1fr; gap: 2px; }
+      .facts dd { margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">HANARM · 하나름</p>
+      <h1>환상의 시뮬라크르</h1>
+      <p class="lede">동방 프로젝트 2차 창작 글을 쓰고, 가끔은 게임도 만듭니다. 장편·단편 팬픽과 회지, 개발일지를 모아두는 곳.</p>
+      <nav>
+        <a class="primary" href="https://hanarm-fanfic.tistory.com/">티스토리 블로그</a>
+        <a href="#about">소개</a>
+        <a href="#works">작품</a>
+        <a href="#posts">최근 글</a>
+      </nav>
+    </header>
+
+    <section id="about" class="about">
+      <h2>소개</h2>
+      <p>하나름입니다. 주로 동방 프로젝트의 2차 창작 소설을 씁니다. 비봉 클럽 이야기를 중심으로, 미스터리나 어반 판타지 풍의 글부터 환상향 인물들의 시간과 기억을 다루는 단편까지 이것저것 씁니다.</p>
+      <p>동인 행사에도 참여하고 있습니다. <strong>제3회 봉래제</strong>에 부스 <strong>&lt;환상의 시뮬라크르&gt;</strong>로 참가했고, 장편 『어느 비봉세계의 연석박물지』를 회지로 엮어 ‘미래세기로의 초대장’에 출품했습니다.</p>
+      <p>요즘은 동방 2차 창작 게임 <strong>『동방염염담』</strong>을 개발하는 중이고, 진행 상황은 블로그 개발일지에 적고 있습니다. 가끔 치지직에서 작업 방송도 켭니다.</p>
+      <dl class="facts">
+        <dt>필명</dt><dd>하나름</dd>
+        <dt>부스명</dt><dd>환상의 시뮬라크르</dd>
+        <dt>장르</dt><dd>동방 프로젝트 2차 창작 (소설, 게임)</dd>
+        <dt>등장 인물</dt>
+        <dd class="tags">
+          <span class="tag">마에리베리 헌</span><span class="tag">우사미 렌코</span>
+          <span class="tag">카미시라사와 케이네</span><span class="tag">후지와라노 모코우</span>
+          <span class="tag">쿠모이 이치린</span><span class="tag">모노노베노 후토</span>
+        </dd>
+      </dl>
+    </section>
+
+    <section id="works">
+      <h2>작품</h2>
+      <div class="works">
+        <a class="work" href="https://hanarm-fanfic.tistory.com/category/%EC%9E%A5%ED%8E%B8/%EC%96%B4%EB%8A%90%20%EB%B9%84%EB%B4%89%EC%84%B8%EA%B3%84%EC%9D%98%20%EC%97%B0%EC%84%9D%EB%B0%95%EB%AC%BC%EC%A7%80">
+          <div class="kind">장편 · 완결 · 회지</div>
+          <div class="name">어느 비봉세계의 연석박물지</div>
+          <p class="note">2025년 11월 완결. 회지판 발행.</p>
+        </a>
+        <a class="work" href="https://hanarm-fanfic.tistory.com/category/%EC%9E%A5%ED%8E%B8/%ED%97%88%EC%84%B8%ED%88%AC%EC%84%B1%EC%9D%B4%20%EB%A9%94%EC%9D%B4%EB%93%9C">
+          <div class="kind">장편</div>
+          <div class="name">허세투성이 메이드</div>
+          <p class="note">연재작. 구판도 블로그에 보관 중.</p>
+        </a>
+        <a class="work" href="https://hanarm-fanfic.tistory.com/category/%EB%8F%99%EB%B0%A9%EC%97%BC%EC%97%BC%EB%8B%B4%20%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80">
+          <div class="kind">게임 · 개발 중</div>
+          <div class="name">동방염염담</div>
+          <p class="note">동방 2차 창작 게임. 개발일지 연재 중.</p>
+        </a>
+        <a class="work" href="https://hanarm-fanfic.tistory.com/category/%EB%8B%A8%ED%8E%B8">
+          <div class="kind">단편 · 조각글</div>
+          <div class="name">단편 모음</div>
+          <p class="note">단편과 아이디어 조각글.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="posts">
+      <h2>최근 글 <small id="updated"></small></h2>
+      <ul class="posts" id="post-list">
+        <li class="status">불러오는 중…</li>
+      </ul>
+      <a class="more" href="https://hanarm-fanfic.tistory.com/">티스토리에서 전체 글 보기 →</a>
+    </section>
+
+    <footer>
+      © 하나름 · 글은 <a href="https://hanarm-fanfic.tistory.com/">티스토리</a>에서 자동으로 가져옵니다.
+    </footer>
+  </div>
+
+  <script>
+    const list = document.getElementById("post-list");
+
+    function fmtDate(iso) {
+      if (!iso) return "";
+      const d = new Date(iso);
+      if (isNaN(d)) return "";
+      return d.toLocaleDateString("ko-KR", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit" })
+              .replace(/\s/g, "").replace(/\.$/, "");
+    }
+
+    function el(tag, cls, text) {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text) e.textContent = text;
+      return e;
+    }
+
+    fetch("posts.json", { cache: "no-cache" })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => {
+        const posts = (data.posts || []).slice(0, 8);
+        list.innerHTML = "";
+        if (!posts.length) {
+          list.appendChild(el("li", "status", "아직 가져온 글이 없어요."));
+          return;
+        }
+        for (const p of posts) {
+          const li = el("li", "post");
+          const a = el("a");
+          a.href = p.link;
+          a.target = "_blank";
+          a.rel = "noopener";
+
+          const meta = el("div", "post-meta");
+          meta.appendChild(el("span", "", fmtDate(p.date)));
+          if (p.category) meta.appendChild(el("span", "", p.category));
+
+          a.appendChild(meta);
+          a.appendChild(el("div", "post-title", p.title));
+          if (p.summary) a.appendChild(el("p", "post-summary", p.summary));
+          li.appendChild(a);
+          list.appendChild(li);
+        }
+      })
+      .catch(() => {
+        list.innerHTML = "";
+        list.appendChild(el("li", "status", "글 목록을 불러오지 못했어요. 아래 링크에서 바로 볼 수 있어요."));
+      });
+  </script>
+</body>
+</html>
